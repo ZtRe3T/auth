@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Zypher - Sign Up</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1 class="neon-effect">Zypher</h1>
+      </header>
+      <main>
+        <h2>Sign Up</h2>
+        <% if (message) { %>
+          <p class="message"><%= message %></p>
+        <% } %>
+        <form action="/signup" method="POST" class="form">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="lowercase letters & numbers only" value="<%= formData.username || '' %>" required>
+          </div>
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Letters and accents only" value="<%= formData.firstName || '' %>" required>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Letters and accents only" value="<%= formData.lastName || '' %>" required>
+          </div>
+          <div class="form-group">
+            <label for="birthdate">Birth Date</label>
+            <input type="date" id="birthdate" name="birthdate" value="<%= formData.birthdate || '' %>" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Min 8 characters with uppercase, lowercase, number & special char" required>
+          </div>
+          <div class="form-group">
+            <label for="token">2FA Token</label>
+            <input type="text" id="token" name="token" placeholder="Enter code from authenticator" required>
+          </div>
+          <!-- Hidden field to pass the generated secret -->
+          <input type="hidden" name="secret" value="<%= secret %>">
+          <button type="submit" class="btn">Sign Up</button>
+        </form>
+        <% if (qrCode && secret) { %>
+            <div class="qr-container">
+              <p>Scan the QR Code with your authenticator app:</p>
+              <img src="<%= qrCode %>" alt="2FA QR Code">
+            </div>
+          <% } %>        
+        <p>Already have an account? <a href="/login">Log In</a></p>
+      </main>
+      <footer>
+        <p>&copy; Zypher 2025</p>
+      </footer>
+    </div>
+  </body>
+</html>

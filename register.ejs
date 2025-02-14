@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro 2FA</title>
+</head>
+<body>
+  <h1>Cadastro - Autenticação de 2 Fatores (2FA)</h1>
+  <% if (message) { %>
+      <p><strong><%= message %></strong></p>
+  <% } %>
+  
+  <% if (qrCode && secret) { %>
+    <p>Escaneie o QR Code com o aplicativo Google Authenticator.</p>
+    <img src="<%= qrCode %>" alt="QR Code">
+    <p>Após a leitura, insira seu email e o token gerado para concluir o cadastro.</p>
+    <form action="/register" method="POST">
+      <input type="hidden" name="secret" value="<%= secret %>">
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" name="email" required>
+      </div>
+      <div>
+        <label for="token">Token:</label>
+        <input type="text" name="token" required>
+      </div>
+      <button type="submit">Registrar</button>
+    </form>
+  <% } else { %>
+    <p>Para realizar um novo cadastro, clique <a href="/register">aqui</a>.</p>
+  <% } %>
+  <hr>
+  <p>
+    Se já possuir cadastro, vá para <a href="/login">Login 2FA</a>.
+  </p>
+</body>
+</html>

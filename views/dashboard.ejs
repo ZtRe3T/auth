@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Zypher - Dashboard</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1 class="neon-effect">Zypher</h1>
+      </header>
+      <main>
+        <h2>Welcome, <%= user.firstName %> <%= user.lastName %>!</h2>
+        <p>Username: <%= user ? user.username : '' %></p>
+        <p>You are now logged in.</p>
+        <a href="/logout" class="btn">Logout</a>
+      </main>
+      <footer>
+        <p>&copy; Zypher 2025</p>
+      </footer>
+    </div>
+  </body>
+</html>
